@@ -2,10 +2,10 @@ import textwrap
 from bs4 import BeautifulSoup
 
 def nice_print(input_text):
-	print('\n'.join(textwrap.wrap(input_text)), '\n')
+    print('\n'.join(textwrap.wrap(input_text)), '\n')
 
 with open('examples/sdut_article.html') as f:
-	soup = BeautifulSoup(f.read(), 'html.parser')
+    soup = BeautifulSoup(f.read(), 'html.parser')
 
 sections = []
 
@@ -17,9 +17,9 @@ paragraphs = soup.find(class_='rich-text-article-body-content').find_all('p')
 
 
 for p in paragraphs:
-	if not p.text:
-		continue
-	sections.append('\n'.join(textwrap.wrap(p.text)))
+    if not p.text:
+        continue
+    sections.append('\n'.join(textwrap.wrap(p.text)))
 
 for s in sections:
-	nice_print(s)
+    nice_print(s)
