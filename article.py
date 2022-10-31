@@ -29,8 +29,10 @@ def main():
     sections.append("{}".format(byline.find(class_='published-date').text))
     paragraphs = soup.find(class_='rich-text-article-body-content').find_all('p')
 
-
     for p in paragraphs:
+        parents = {x.name for x in p.parents}
+        if 'ps-promo' in parents:
+            continue
         if not p.text:
             continue
         sections.append('\n'.join(textwrap.wrap(p.text)))
